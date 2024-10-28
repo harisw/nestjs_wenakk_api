@@ -18,6 +18,10 @@ export class RecipeService {
 
   findAll() {
     return this.recipeRepository.find({
+      relations: {
+        category: true,
+        origin: true
+      },
       take: 30
     });
   }

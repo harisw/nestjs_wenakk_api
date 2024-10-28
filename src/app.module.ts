@@ -4,6 +4,8 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { RecipeModule } from './recipe/recipe.module';
 import { Recipe } from './recipe/entities/recipe.entity';
+import { Category } from './recipe/entities/category.entity';
+import { Origin } from './recipe/entities/origin.entity';
 
 @Module({
   imports: [
@@ -14,7 +16,7 @@ import { Recipe } from './recipe/entities/recipe.entity';
       username: 'postgres',
       password: 'hari123',
       database: 'wenakk',
-      entities: [Recipe],
+      entities: [Recipe, Category, Origin],
       synchronize: true,
       logging: true,
     }),

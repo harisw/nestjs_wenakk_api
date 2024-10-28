@@ -1,15 +1,21 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Category } from './category.entity';
+import { Origin } from './origin.entity';
 
 @Entity('recipes')
 export class Recipe {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ type: 'int' })
-  category_id: number;
+  // @Column({ type: 'int' })
+  // category_id: number;
+  @ManyToOne(() => Category, (category) => category.recipes)
+  @JoinColumn({ name: 'category_id', referencedColumnName: 'id'})
+  category: Category;
 
-  @Column({ type: 'int' })
-  origin_id: number;
+  @ManyToOne(() => Origin, (origin) => origin.recipes)
+  @JoinColumn({ name: 'origin_id', referencedColumnName: 'id'})
+  origin: Origin;
 
   @Column({ type: 'varchar', length: 200})
   name: string;
